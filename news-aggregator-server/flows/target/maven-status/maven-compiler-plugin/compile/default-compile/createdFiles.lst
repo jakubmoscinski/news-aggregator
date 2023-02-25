@@ -1,0 +1,3 @@
+news/aggregator/flows/model/Member.class
+news/aggregator/flows/repository/MemberRepository.class
+news/aggregator/flows/service/MemberService.class
