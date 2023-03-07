@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: myGreen,
       appBar: AppBar(
         backgroundColor: myGreen,
-        title: Text('News Agreggator App'),
+        title: const Text('News Agreggator App'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -63,30 +63,30 @@ class _LoginPageState extends State<LoginPage> {
             // Email input field
             TextFormField(
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Email',
                 hintText: 'example@gmail.com',
               ),
               onChanged: (value) => setState(() => _email = value),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
 
             // Password input field
             TextFormField(
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Password',
                 hintText: '***************',
               ),
               onChanged: (value) => setState(() => _password = value),
             ),
-            SizedBox(height: 32.0),
+            const SizedBox(height: 32.0),
 
             // Login button
             ElevatedButton(
               onPressed: _handleLogin,
               style: ElevatedButton.styleFrom(backgroundColor: myGreen),
-              child: Text('Login'),
+              child: const Text('Login'),
             ),
           ],
         ),
