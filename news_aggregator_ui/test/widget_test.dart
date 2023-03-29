@@ -1,30 +1,52 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:news_aggregator_ui/main.dart';
+import 'package:news_aggregator_ui/view/login_view.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('Login Page Widget Tests', () {
+    testWidgets('Email field validation', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: LoginPage()));
+      expect(find.text(''), findsNWidgets(1));
+      await tester.enterText(find.byType(TextFormField).first, 'invalid');
+      await tester.tap(find.byType(ElevatedButton));
+      await tester.pump();
+      expect(find.text('Error'), findsOneWidget);
+      expect(find.text('Please enter a valid email address.'), findsOneWidget);
+      await tester.enterText(find.byType(TextFormField).first, '');
+      await tester.tap(find.byType(ElevatedButton));
+      await tester.pump();
+      expect(find.text('Error'), findsOneWidget);
+      expect(
+          find.text('Please enter your email and password.'), findsOneWidget);
+    });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    testWidgets('Password field validation', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: LoginPage()));
+      expect(find.text(''), findsNWidgets(1));
+      await tester.enterText(find.byType(TextFormField).last, '12345');
+      await tester.tap(find.byType(ElevatedButton));
+      await tester.pump();
+      expect(find.text('Error'), findsOneWidget);
+      expect(
+          find.text('Password must be at least 6 characters.'), findsOneWidget);
+      await tester.enterText(find.byType(TextFormField).last, '');
+      await tester.tap(find.byType(ElevatedButton));
+      await tester.pump();
+      expect(find.text('Error'), findsOneWidget);
+      expect(
+          find.text('Please enter your email and password.'), findsOneWidget);
+    });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    testWidgets('Successful login', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: LoginPage()));
+      await tester.enterText(
+          find.byType(TextFormField).first, 'test@example.com');
+      await tester.enterText(find.byType(TextFormField).last, 'password');
+      await tester.tap(find.byType(ElevatedButton));
+      await tester.pumpAndSettle();
+      expect(find.text('Welcome to the app!'), findsOneWidget);
+    });
   });
 }
