@@ -1,3 +1,7 @@
 news/aggregator/flows/model/Member.class
+news/aggregator/flows/model/Article.class
+news/aggregator/flows/repository/ArticleRepository.class
 news/aggregator/flows/repository/MemberRepository.class
 news/aggregator/flows/service/MemberService.class
+news/aggregator/flows/service/ArticleService.class
+news/aggregator/flows/model/support/ArticleSource.class
