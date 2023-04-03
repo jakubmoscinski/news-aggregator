@@ -25,7 +25,7 @@ public class ArticleService {
         return this.repository.save(article);
     }
 
-    public List<Article> findMembers() {
+    public List<Article> findArticles() {
         return this.repository.findAll();
     } //todo test purposes only
 

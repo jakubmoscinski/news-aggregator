@@ -27,7 +27,7 @@ public class ArticleTest {
 
         this.sevice.saveArticle(article);
 
-        assert(this.sevice.findMembers().size() == 1);
+        assert(this.sevice.findArticles().size() == 1);
     }
 
 }
