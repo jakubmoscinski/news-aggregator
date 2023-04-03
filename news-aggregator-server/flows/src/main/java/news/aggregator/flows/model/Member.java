@@ -29,7 +29,6 @@ public class Member {
         this.id = id;
     }
 
-    @NonNull
     public String getFirstName() {
         return firstName;
     }
@@ -38,7 +37,6 @@ public class Member {
         this.firstName = firstName;
     }
 
-    @NonNull
     public String getLastName() {
         return lastName;
     }

@@ -1,6 +1,8 @@
 package news.aggregator.flows.service;
 
+import news.aggregator.flows.model.Article;
 import news.aggregator.flows.model.Member;
+import news.aggregator.flows.repository.ArticleRepository;
 import news.aggregator.flows.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,20 +12,20 @@ import java.util.List;
 
 @Service
 @Qualifier("memberService")
-public class MemberService {
+public class ArticleService {
 
-    private final MemberRepository repository;
+    private final ArticleRepository repository;
 
     @Autowired
-    public MemberService(final MemberRepository repository) {
+    public ArticleService(final ArticleRepository repository) {
         this.repository = repository;
     }
 
-    public Member saveMember(final Member member) {
-        return this.repository.save(member);
+    public Article saveArticle(final Article article) {
+        return this.repository.save(article);
     }
 
-    public List<Member> findMembers() {
+    public List<Article> findMembers() {
         return this.repository.findAll();
     } //todo test purposes only
 
