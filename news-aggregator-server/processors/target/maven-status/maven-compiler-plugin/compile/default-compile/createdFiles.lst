@@ -1,1 +1,8 @@
+news/aggregator/processors/domain/NewsApiSource.class
+news/aggregator/processors/domain/NewsApiResponce.class
+news/aggregator/processors/controller/WebController.class
+news/aggregator/processors/scheduler/NewsApiScheduler.class
+news/aggregator/processors/domain/NewsApiArticle.class
 news/aggregator/processors/Application.class
+news/aggregator/processors/controller/NewsApiController.class
+news/aggregator/processors/processor/NewsApiProcessor.class

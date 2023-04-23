@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import news.aggregator.flows.model.support.ArticleSource;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "article")
@@ -15,17 +16,26 @@ public class Article {
     private Long id;
 
     @NotNull
-    @Column(name="source", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ArticleSource source;
+    @Column(name = "author", nullable = false)
+    private String author;
+
+    @NotNull
+    @Column(name = "source", nullable = false)
+    private String source;
+
+    @NotNull
+    @Column(name = "title", nullable = false)
+    private String title;
 
     @Lob
-    @Column(name = "content")
+    @NotNull
+    @Column(name = "url", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private String content;
+    private String url;
 
-    //TODO relation to members - likes/favorites etc
-
+    @NotNull
+    @Column(name = "publication_day", nullable = false)
+    private LocalDate publicationDay;
 
     public Long getId() {
         return id;
@@ -35,20 +45,59 @@ public class Article {
         this.id = id;
     }
 
-    public ArticleSource getSource() {
+    public String getSource() {
         return source;
     }
 
-    public void setSource(ArticleSource source) {
+    public void setSource(String source) {
         this.source = source;
     }
 
-    public String getContent() {
-        return content;
+    public String getTitle() {
+        return title;
     }
 
-    public void setContent(String description) {
-        this.content = description;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public LocalDate getPublicationDay() {
+        return publicationDay;
+    }
+
+    public void setPublicationDay(LocalDate publicationDay) {
+        this.publicationDay = publicationDay;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
 }
+
+
+
+
+//    @NotNull
+//    @Column(name="source", nullable = false)
+//    @Enumerated(EnumType.STRING)
+//    private ArticleSource source;
+//
+//    @Lob
+//    @Column(name = "content")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING)
+//    private String content;
+
+//TODO relation to members - likes/favorites etc
