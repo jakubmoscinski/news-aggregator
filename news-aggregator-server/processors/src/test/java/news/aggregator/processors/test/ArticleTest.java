@@ -23,7 +23,7 @@ public class ArticleTest {
     void testService() {
         final Article article = new Article();
         article.setSource(ArticleSource.EXAMPLE_SOURCE_1);
-        article.setDescription("Lorem ipsum dolor sit amet.Aut laborum iste sed quae pariatur et minus repudiandae id possimus placeat aut ipsam quia eos odit perferendis eos dicta libero? Qui iusto voluptatem qui cupiditate esse vel adipisci iure in obcaecati ratione est fuga dolore eos soluta magni.");
+        article.setContent("Lorem ipsum dolor sit amet.Aut laborum iste sed quae pariatur et minus repudiandae id possimus placeat aut ipsam quia eos odit perferendis eos dicta libero? Qui iusto voluptatem qui cupiditate esse vel adipisci iure in obcaecati ratione est fuga dolore eos soluta magni.");
 
         this.sevice.saveArticle(article);
 
