@@ -20,9 +20,9 @@ public class Article {
     private ArticleSource source;
 
     @Lob
-    @Column(name = "description")
-    @JsonFormat(shape = JsonFormat.Shape.STRING)    //TODO: TO double-check when the API will be ready
-    private String description;
+    @Column(name = "content")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private String content;
 
     //TODO relation to members - likes/favorites etc
 
@@ -43,12 +43,12 @@ public class Article {
         this.source = source;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String description) {
+        this.content = description;
     }
 
 }
