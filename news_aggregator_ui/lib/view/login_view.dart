@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: ListView(
         shrinkWrap: true,
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         children: [
           Center(
             child: Container(
