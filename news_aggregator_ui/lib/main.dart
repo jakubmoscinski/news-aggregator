@@ -8,9 +8,9 @@ void main() {
     theme: ThemeData(
       primaryColor: Colors.grey,
       textTheme: const TextTheme(
-        headline6: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-        bodyText1: TextStyle(fontSize: 16),
-        button: TextStyle(color: Colors.white),
+        titleLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+        bodyLarge: TextStyle(fontSize: 16),
+        labelLarge: TextStyle(color: Colors.white),
       ),
       inputDecorationTheme: InputDecorationTheme(
         focusedBorder: OutlineInputBorder(
