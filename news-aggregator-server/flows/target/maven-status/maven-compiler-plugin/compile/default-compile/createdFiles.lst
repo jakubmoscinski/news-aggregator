@@ -1,4 +1,5 @@
 news/aggregator/flows/model/Member.class
+news/aggregator/flows/model/UserAuthentication.class
 news/aggregator/flows/model/Article.class
 news/aggregator/flows/repository/ArticleRepository.class
 news/aggregator/flows/repository/MemberRepository.class
