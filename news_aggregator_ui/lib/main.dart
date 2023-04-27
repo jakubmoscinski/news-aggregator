@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_aggregator_ui/view/authentication_view.dart';
+import 'package:news_aggregator_ui/view/news_view.dart';
 
 void main() {
   runApp(Application());
@@ -22,7 +23,7 @@ class Application extends StatelessWidget {
                 padding: MaterialStateProperty.resolveWith(
                     (states) => const EdgeInsets.all(2))),
           )),
-      home: const AuthenticationView(),
+      home: const NewsView(),
     );
   }
 }
