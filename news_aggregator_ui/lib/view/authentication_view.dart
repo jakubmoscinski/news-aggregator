@@ -25,7 +25,7 @@ class AuthenticationView extends StatelessWidget {
             _provideTextField('Password', passwordNameController, true),
             ElevatedButton(
               onPressed: () async {
-                //todo: navigate to news view
+                Navigator.of(context).pushReplacementNamed('/news');
               },
               child: const Text('Log in'),
             ),
