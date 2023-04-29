@@ -8,6 +8,19 @@ class NewsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('News Aggregator'),
+        automaticallyImplyLeading: false,
+        actions: [
+          ButtonBar(
+            children: [
+              ElevatedButton(
+                //todo extract to separate method
+                onPressed: () =>
+                    Navigator.of(context).pushNamed('/authentication'),
+                child: const Text("Logout"),
+              ),
+            ],
+          )
+        ],
       ),
       body: Center(
         child: ListView(

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:news_aggregator_ui/view/authentication_view.dart';
-import 'package:news_aggregator_ui/view/news_view.dart';
+import 'package:news_aggregator_ui/router/routes.dart';
 
 void main() {
   runApp(Application());
 }
 
 class Application extends StatelessWidget {
+  final _appRouter = RoutesGenerator();
+
   Application({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      onGenerateRoute: _appRouter.generateRoute,
+      initialRoute: '/authentication',
       title: 'News Aggregator',
       theme: ThemeData(
           primarySwatch: Colors.indigo,
@@ -23,7 +26,6 @@ class Application extends StatelessWidget {
                 padding: MaterialStateProperty.resolveWith(
                     (states) => const EdgeInsets.all(2))),
           )),
-      home: const NewsView(),
     );
   }
 }
