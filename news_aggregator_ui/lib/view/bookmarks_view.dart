@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:news_aggregator_ui/model/article_model.dart';
 import 'package:news_aggregator_ui/service/article_service.dart';
+import 'package:news_aggregator_ui/service/bookmark_service.dart';
 import 'package:provider/provider.dart';
 
-class NewsView extends StatelessWidget {
-  const NewsView({super.key});
+class BookmarksView extends StatelessWidget {
+  const BookmarksView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('News'),
+        title: const Text('Bookmarks'),
         automaticallyImplyLeading: false,
         actions: [
           ButtonBar(
             children: [
               ElevatedButton(
                 onPressed: () =>
-                    Navigator.of(context).pushNamed('/bookmarks'),
-                child: const Text("Bookmarks"),
+                    Navigator.of(context).pushNamed('/news'),
+                child: const Text("News"),
               ),
               ElevatedButton(
                 onPressed: () =>
@@ -31,10 +32,10 @@ class NewsView extends StatelessWidget {
       ),
       body: Center(
         child: ChangeNotifierProvider(
-            create: (_) => ArticleService(),
+            create: (_) => BookmarkService(),
             builder: (context, child) {
-              return Consumer<ArticleService>(builder: (context, value, child) {
-                context.read<ArticleService>().fetchData();
+              return Consumer<BookmarkService>(builder: (context, value, child) {
+                context.read<BookmarkService>().fetchData();
 
                 return Center(
                   child: ListView(
@@ -47,7 +48,7 @@ class NewsView extends StatelessWidget {
     );
   }
 
-  List<Widget> _formatArticles(List<ArticleModel> articles) {//todo further formatting
+  List<Widget> _formatArticles(List<ArticleModel> articles) {
     List<Padding> paddings = [];
 
     for (ArticleModel article in articles) {
