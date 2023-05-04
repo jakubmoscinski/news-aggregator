@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_aggregator_ui/service/authentication_service.dart';
+import 'package:provider/provider.dart';
 
 class AuthenticationView extends StatelessWidget {
   const AuthenticationView({super.key});
@@ -6,7 +8,7 @@ class AuthenticationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userNameController = TextEditingController();
-    final passwordNameController = TextEditingController();
+    final passwordController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -14,23 +16,37 @@ class AuthenticationView extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Welcome!',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            _provideTextField('Username', userNameController, false),
-            _provideTextField('Password', passwordNameController, true),
-            ElevatedButton(
-              onPressed: () async {
-                Navigator.of(context).pushReplacementNamed('/news');
-              },
-              child: const Text('Log in'),
-            ),
-          ],
-        ),
+        child: ChangeNotifierProvider(
+            create: (_) => AuthenticationService(),
+            builder: (context, child) {
+              return Consumer<AuthenticationService>(builder: (context, value, child) {
+                // context.read<AuthenticationService>().fetchData();
+
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Welcome!',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                      _provideTextField('Username', userNameController, false),
+                      _provideTextField('Password', passwordController, true),
+                      ElevatedButton(
+                        onPressed: () async {
+                          context.read<AuthenticationService>().authenticate(userNameController.text, passwordController.text);
+
+                          if (value.isAuthenticated) {
+                            Navigator.of(context).pushReplacementNamed('/news');
+                          } //todo when else condition
+                        },
+                        child: const Text('Log in'),
+                      ),
+                    ],
+                  ),
+                );
+              });
+            }),
       ),
     );
   }
