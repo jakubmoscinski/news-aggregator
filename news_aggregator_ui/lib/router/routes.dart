@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_aggregator_ui/view/authentication_view.dart';
+import 'package:news_aggregator_ui/view/bookmarks_view.dart';
 import 'package:news_aggregator_ui/view/news_view.dart';
 
 class RoutesGenerator {
@@ -10,6 +11,8 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const NewsView());
       case '/authentication':
         return MaterialPageRoute(builder: (_) => const AuthenticationView());
+      case '/bookmarks':
+        return MaterialPageRoute(builder: (_) => const BookmarksView());
       default:
         return _errorRoute();
     }
