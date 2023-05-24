@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:news_aggregator_ui/model/article_model.dart';
-import 'package:news_aggregator_ui/service/article_service.dart';
 import 'package:news_aggregator_ui/service/bookmark_service.dart';
+import 'package:news_aggregator_ui/service/favorite_news_service.dart';
+import 'package:news_aggregator_ui/view/content_view.dart';
+import 'package:news_aggregator_ui/view/news_view.dart';
 import 'package:provider/provider.dart';
 
 class BookmarksView extends StatelessWidget {
-  const BookmarksView({super.key});
+  final String user;
+
+  const BookmarksView({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +21,14 @@ class BookmarksView extends StatelessWidget {
           ButtonBar(
             children: [
               ElevatedButton(
-                onPressed: () =>
-                    Navigator.of(context).pushNamed('/news'),
-                child: const Text("News"),
+                onPressed: () async {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) =>
+                            NewsView(user: user)
+                        )
+                    );
+                },
+                child: const Text('Articles'),
               ),
               ElevatedButton(
                 onPressed: () =>
@@ -35,12 +44,10 @@ class BookmarksView extends StatelessWidget {
             create: (_) => BookmarkService(),
             builder: (context, child) {
               return Consumer<BookmarkService>(builder: (context, value, child) {
-                context.read<BookmarkService>().fetchData();
+                context.read<BookmarkService>().fetchData(user);
 
                 return Center(
-                  child: ListView(
-                    children: _formatArticles(value.articles)
-                  ),
+                  child: ListView(children: _formatArticles(value.articles, context)),
                 );
               });
             }),
@@ -48,7 +55,8 @@ class BookmarksView extends StatelessWidget {
     );
   }
 
-  List<Widget> _formatArticles(List<ArticleModel> articles) {
+  List<Widget> _formatArticles(List<ArticleModel> articles, BuildContext context) {
+    //todo further formatting
     List<Padding> paddings = [];
 
     for (ArticleModel article in articles) {
@@ -60,13 +68,31 @@ class BookmarksView extends StatelessWidget {
             contentPadding: const EdgeInsets.all(5),
             dense: true,
             onTap: () async {
-
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) =>
+                      ContentView(user: user, url: article.url)
+                  )
+              );
             },
             title: Text(
               article.title,
               style: const TextStyle(fontSize: 20),
             ),
-            trailing: const Icon(Icons.bookmark),
+            trailing: ChangeNotifierProvider(
+                create: (_) => FavoriteNewsService(),
+                builder: (context, child) {
+                  return Consumer<FavoriteNewsService>(builder: (context, value, child) {
+                    return IconButton(
+                      icon: const Icon(
+                        Icons.bookmark,
+                        color: Colors.red,
+                      ),
+                      onPressed: () {
+                        context.read<FavoriteNewsService>().addToFavorites(user, article.id);
+                      },
+                    );
+                  });
+                }),
           ),
         ),
       );
