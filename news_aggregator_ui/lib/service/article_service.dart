@@ -6,7 +6,7 @@ class ArticleService with ChangeNotifier {
   static const _timeout = 8;
   final Controller _controller;
 
-  List<ArticleModel> _articles = [];
+  final List<ArticleModel> _articles = [];
 
   ArticleService() : _controller = const Controller(baseUrl: 'http://10.0.2.2:8080/news-aggregator/article');
 
