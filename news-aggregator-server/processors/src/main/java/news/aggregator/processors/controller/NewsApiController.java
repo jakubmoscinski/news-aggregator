@@ -1,6 +1,6 @@
 package news.aggregator.processors.controller;
 
-import news.aggregator.processors.domain.NewsApiResponce;
+import news.aggregator.processors.domain.NewsApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,15 +26,15 @@ public class NewsApiController extends WebController {
         this.country = country;
     }
 
-    public NewsApiResponce getNews() {
-        final Mono<NewsApiResponce> mono = client.get().uri(builder -> builder.path(this.requestPart)
+    public NewsApiResponse getNews() {
+        final Mono<NewsApiResponse> mono = client.get().uri(builder -> builder.path(this.requestPart)
                 .queryParam("country", this.country)    //TODO countries to enum
                 .queryParam("apiKey", this.token)
                 .build()
         )
         .accept(MediaType.APPLICATION_JSON)
         .retrieve()
-        .bodyToMono(NewsApiResponce.class);
+        .bodyToMono(NewsApiResponse.class);
 
         return mono.block();
     }

@@ -3,12 +3,13 @@ package news.aggregator.processors.scheduler;
 import news.aggregator.flows.model.Article;
 import news.aggregator.flows.service.ArticleService;
 import news.aggregator.processors.controller.NewsApiController;
-import news.aggregator.processors.domain.NewsApiResponce;
+import news.aggregator.processors.domain.NewsApiResponse;
 import news.aggregator.processors.processor.NewsApiProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -32,16 +33,18 @@ public class NewsApiScheduler {
         this.service = service;
     }
 
-    @PostConstruct
+//    @PostConstruct
+    @Scheduled(cron = "0 0 23 * * ?")
     public void schedule() {
         LOG.info("Fetching data from News API started");
 
-        final NewsApiResponce response = this.controller.getNews();
+        final NewsApiResponse response = this.controller.getNews();
         final List<Article> articles = this.processor.apply(response);
 
         articles.forEach(this.service::saveArticle);    //todo Write better
 
         LOG.info("Fetching data from News API completed");
     }
+
 
 }
