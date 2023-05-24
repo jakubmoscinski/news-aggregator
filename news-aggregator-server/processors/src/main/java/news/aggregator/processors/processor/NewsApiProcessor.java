@@ -1,7 +1,7 @@
 package news.aggregator.processors.processor;
 
 import news.aggregator.flows.model.Article;
-import news.aggregator.processors.domain.NewsApiResponce;
+import news.aggregator.processors.domain.NewsApiResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.function.Function;
 
 @Component
-public class NewsApiProcessor implements Function<NewsApiResponce, List<Article>> {
+public class NewsApiProcessor implements Function<NewsApiResponse, List<Article>> {
 
     @Override
-    public List<Article> apply(final NewsApiResponce domain) {
+    public List<Article> apply(final NewsApiResponse domain) {
         final List<Article> articles = new ArrayList();
 
         domain.getArticles().forEach(domainArticle -> {
