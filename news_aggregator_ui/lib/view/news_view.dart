@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:news_aggregator_ui/model/article_model.dart';
 import 'package:news_aggregator_ui/service/article_service.dart';
+import 'package:news_aggregator_ui/service/favorite_news_service.dart';
+import 'package:news_aggregator_ui/view/bookmarks_view.dart';
+import 'package:news_aggregator_ui/view/content_view.dart';
 import 'package:provider/provider.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class NewsView extends StatelessWidget {
-  const NewsView({super.key});
+  final String user;
+
+  const NewsView({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('News'),
+        title: Text("$user's news"),
         automaticallyImplyLeading: false,
         actions: [
           ButtonBar(
             children: [
               ElevatedButton(
-                onPressed: () =>
-                    Navigator.of(context).pushNamed('/bookmarks'),
-                child: const Text("Bookmarks"),
+                onPressed: () async {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) =>
+                          BookmarksView(user: user)
+                      )
+                  );
+                },
+                child: const Text('Bookmarks'),
               ),
               ElevatedButton(
                 onPressed: () =>
@@ -37,9 +48,7 @@ class NewsView extends StatelessWidget {
                 context.read<ArticleService>().fetchData();
 
                 return Center(
-                  child: ListView(
-                    children: _formatArticles(value.articles)
-                  ),
+                  child: ListView(children: _formatArticles(value.articles, user, context)),
                 );
               });
             }),
@@ -47,7 +56,8 @@ class NewsView extends StatelessWidget {
     );
   }
 
-  List<Widget> _formatArticles(List<ArticleModel> articles) {//todo further formatting
+  List<Widget> _formatArticles(List<ArticleModel> articles, String user, BuildContext context) {
+    //todo further formatting
     List<Padding> paddings = [];
 
     for (ArticleModel article in articles) {
@@ -59,13 +69,35 @@ class NewsView extends StatelessWidget {
             contentPadding: const EdgeInsets.all(5),
             dense: true,
             onTap: () async {
-
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) =>
+                      ContentView(user: user, url: article.url)
+                  )
+              );
             },
             title: Text(
               article.title,
               style: const TextStyle(fontSize: 20),
             ),
-            trailing: const Icon(Icons.bookmark),
+            trailing: ChangeNotifierProvider(
+                create: (_) => FavoriteNewsService(),
+                builder: (context, child) {
+                  return Consumer<FavoriteNewsService>(builder: (context, value, child) {
+                    context.read<FavoriteNewsService>().checkIfFavorite(user, article.id);
+
+                    return IconButton(
+                      icon: Icon(
+                        Icons.bookmark,
+                        color: value.isFavorite ? Colors.red : Colors.grey,
+                      ),
+                      onPressed: () {
+                        context
+                            .read<FavoriteNewsService>()
+                            .addToFavorites(user, article.id);
+                      },
+                    );
+                  });
+                }),
           ),
         ),
       );
@@ -75,5 +107,4 @@ class NewsView extends StatelessWidget {
 
     return paddings;
   }
-
 }
