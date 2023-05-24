@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_aggregator_ui/service/authentication_service.dart';
+import 'package:news_aggregator_ui/view/news_view.dart';
 import 'package:provider/provider.dart';
 
 class AuthenticationView extends StatelessWidget {
@@ -32,16 +33,33 @@ class AuthenticationView extends StatelessWidget {
                       ),
                       _provideTextField('Username', userNameController, false),
                       _provideTextField('Password', passwordController, true),
-                      ElevatedButton(
-                        onPressed: () async {
-                          context.read<AuthenticationService>().authenticate(userNameController.text, passwordController.text);
+                      ButtonBar(children: [
+                        ElevatedButton(
+                          onPressed: () async {
+                            await context.read<AuthenticationService>().authenticate(userNameController.text, passwordController.text);
 
-                          if (value.isAuthenticated) {
-                            Navigator.of(context).pushReplacementNamed('/news');
-                          } //todo when else condition
-                        },
-                        child: const Text('Log in'),
-                      ),
+                            if (value.isAuthenticated) {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) =>
+                                  NewsView(user: userNameController.text)
+                                )
+                              );
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) => _buildWarningPopupDialog(context),
+                              );
+                            }
+                          },
+                          child: const Text('Log in'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                              Navigator.of(context).pushReplacementNamed('/registration');
+                          },
+                          child: const Text('Sign in'),
+                        ),
+                      ],),
                     ],
                   ),
                 );
@@ -59,6 +77,29 @@ class AuthenticationView extends StatelessWidget {
         obscureText: obscure,
         decoration: InputDecoration(border: const OutlineInputBorder(), labelText: label),
       ),
+    );
+  }
+
+  Widget _buildWarningPopupDialog(BuildContext context) {
+    return AlertDialog(
+      title: const Text(
+        'Warning',
+        style: TextStyle(color: Colors.redAccent),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text("Please enter correct username and password"),
+        ],
+      ),
+      actions: <Widget>[
+        TextButton(onPressed: () {
+          Navigator.of(context).pop();
+        },
+          child: const Text('Close'),
+        ),
+      ],
     );
   }
 

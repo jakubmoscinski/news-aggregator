@@ -41,4 +41,5 @@ class ArticleService with ChangeNotifier {
   }
 
   List<ArticleModel> get articles => _articles;
+
 }
