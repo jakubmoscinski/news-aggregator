@@ -6,6 +6,7 @@ import news.aggregator.flows.model.support.ArticleSource;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "article")
@@ -15,8 +16,8 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Column(name = "author", nullable = false)
+//    @NotNull
+    @Column(name = "author"/*, nullable = false*/)
     private String author;
 
     @NotNull
@@ -36,6 +37,9 @@ public class Article {
     @NotNull
     @Column(name = "publication_day", nullable = false)
     private LocalDate publicationDay;
+
+    @ManyToOne(/*fetch = FetchType.EAGER*/)
+    private Member member;
 
     public Long getId() {
         return id;
@@ -83,6 +87,14 @@ public class Article {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 
 }
