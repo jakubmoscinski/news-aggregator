@@ -1,18 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:news_aggregator_ui/view/authentication_view.dart';
 import 'package:news_aggregator_ui/view/bookmarks_view.dart';
+import 'package:news_aggregator_ui/view/content_view.dart';
 import 'package:news_aggregator_ui/view/news_view.dart';
+import 'package:news_aggregator_ui/view/registration_view.dart';
 
 class RoutesGenerator {
 
   Route<dynamic> generateRoute(RouteSettings settings) {
+    final args = settings.arguments;
+
     switch (settings.name) {
       case '/news':
-        return MaterialPageRoute(builder: (_) => const NewsView());
+        if (args is String) {
+          return MaterialPageRoute(
+            builder: (_) => NewsView(
+              user: args,
+            ),
+          );
+        }
+        return _errorRoute();
+      case '/bookmarks':
+        if (args is String) {
+          return MaterialPageRoute(
+            builder: (_) => BookmarksView(
+              user: args,
+            ),
+          );
+        }
+        return _errorRoute();
+      case '/content':
+        if (args is String) {
+          return MaterialPageRoute(
+            builder: (_) => ContentView(
+              user: args[0],
+              url: args[1],
+            ),
+          );
+        }
+        return _errorRoute();
       case '/authentication':
         return MaterialPageRoute(builder: (_) => const AuthenticationView());
-      case '/bookmarks':
-        return MaterialPageRoute(builder: (_) => const BookmarksView());
+      case '/registration':
+        return MaterialPageRoute(builder: (_) => const RegistrationView());
       default:
         return _errorRoute();
     }
