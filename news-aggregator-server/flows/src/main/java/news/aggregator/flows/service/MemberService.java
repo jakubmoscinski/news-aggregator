@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 @Qualifier("memberService")
@@ -23,8 +23,16 @@ public class MemberService {
         return this.repository.save(member);
     }
 
-    public List<Member> findMembers() {
-        return this.repository.findAll();
-    } //todo test purposes only
+    public Optional<Member> findMember(final String username) { return this.repository.getMemberByUsername(username); }
+
+    public boolean authenticate(final String username, final String password) {
+        final Optional<Member> member = this.repository.getMemberByUsername(username);
+
+        return member.map(value -> value.getPassword().equals(password)).orElse(false);
+    }
+
+    public void dropTableContent() {
+        this.repository.deleteAll();
+    }
 
 }
