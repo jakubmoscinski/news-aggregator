@@ -24,8 +24,8 @@ public class ArticleController {
     }
 
     @Operation(summary = "List articles")
-    @GetMapping(value = "/list", produces = { MediaType.APPLICATION_JSON_VALUE} )
-    public Flux<Article> list() {
+    @GetMapping(value = "/list", produces = { MediaType.APPLICATION_JSON_VALUE } )
+    public Flux<Article> listArticles() {
         return Flux.fromIterable(this.service.findArticles());
     }
 
