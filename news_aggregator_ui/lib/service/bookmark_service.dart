@@ -8,10 +8,10 @@ class BookmarkService with ChangeNotifier {
 
   final List<ArticleModel> _articles = [];
 
-  BookmarkService() : _controller = const Controller(baseUrl: 'http://10.0.2.2:8080/news-aggregator/article');
+  BookmarkService() : _controller = const Controller(baseUrl: 'http://10.0.2.2:8080/news-aggregator/member');
 
-  Future<void> fetchData() async {
-    final clientResponse = await _controller.getData(urlPart: '/bookmarks', timeout: _timeout);
+  Future<void> fetchData(String username) async {
+    final clientResponse = await _controller.getData(urlPart: '/bookmarks/$username', timeout: _timeout);
 
     _articles.clear();
 
