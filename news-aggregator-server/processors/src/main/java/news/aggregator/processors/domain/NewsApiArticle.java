@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.ZonedDateTime;
 
+/**
+ * Serializable domain consistent with 'newsapi.org' 'article' representation
+ */
 public class NewsApiArticle {
 
     @JsonProperty("title")

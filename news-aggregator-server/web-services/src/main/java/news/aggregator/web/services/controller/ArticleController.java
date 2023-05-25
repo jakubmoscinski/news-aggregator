@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
+/**
+ * Detailed documentation and test methods: http://localhost:8080/news-aggregator/swagger-ui/index.html
+ */
+
 @RestController
 @RequestMapping("/article")
 @Tag(name = "Article resource", description = "Article controller")

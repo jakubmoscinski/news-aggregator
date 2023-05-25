@@ -5,6 +5,9 @@ import org.springframework.lang.NonNull;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Representation of 'member' table and its columns
+ */
 
 @Entity
 @Table(name = "member")

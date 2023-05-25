@@ -15,6 +15,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
+/**
+ * Responsible for periodic triggering: fetching, processing and persisting the news
+ */
+
 @Component
 @Qualifier("newsApiScheduler")
 public class NewsApiScheduler {
@@ -33,18 +37,23 @@ public class NewsApiScheduler {
         this.service = service;
     }
 
-//    @PostConstruct
+
+    /**
+     * Trigger everyday at 11 pm
+     */
     @Scheduled(cron = "0 0 23 * * ?")
+//    @PostConstruct
     public void schedule() {
         LOG.info("Fetching data from News API started");
 
         final NewsApiResponse response = this.controller.getNews();
         final List<Article> articles = this.processor.apply(response);
 
-        articles.forEach(this.service::saveArticle);    //todo Write better
+        articles.forEach(this.service::saveArticle);
 
         LOG.info("Fetching data from News API completed");
     }
 
+    //TODO If you wish to populate 'article' table immediately after server start please uncomment @PostConstruct
 
 }

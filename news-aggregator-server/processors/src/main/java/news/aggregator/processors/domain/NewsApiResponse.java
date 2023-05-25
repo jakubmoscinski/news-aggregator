@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+/**
+ * Serializable domain consistent with 'newsapi.org' JSON response
+ */
 public class NewsApiResponse {
 
     @JsonProperty("articles")
