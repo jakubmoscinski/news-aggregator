@@ -12,6 +12,10 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * This unit tests examines the correctness of MemberService's methods
+ */
+
 @SpringBootTest(classes = { Application.class })
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class MemberServiceTest {
@@ -23,6 +27,9 @@ public class MemberServiceTest {
         this.service = service;
     }
 
+    /**
+     * Test if User can be saved keeping all its field
+     */
     @Test
     void test01SaveMember() {
         this.service.dropTableContent();
@@ -44,12 +51,18 @@ public class MemberServiceTest {
         assert member.getArticles().size() == 0;
     }
 
+    /**
+     * Test if existing user can be fetched (given username)
+     */
     @Test
     void test02FindMember() {
         final Optional<Member> member = this.service.findMember("Username");
         assert member.isPresent();
     }
 
+    /**
+     * Test if existing user can be authenticated (given username and password)
+     */
     @Test
     void test03Authenticate() {
         assert this.service.authenticate("Username", "Password");

@@ -15,6 +15,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This unit tests examines the correctness of NewsApiScheduler's methods
+ */
+
 @SpringBootTest(classes = { Application.class })
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class NewsApiSchedulerTest {
@@ -29,6 +33,10 @@ public class NewsApiSchedulerTest {
         this.processor = processor;
     }
 
+    /**
+     * Test if the sequence of: fetching, processing, persisting leads to at least one saved entry
+     * (Assuming the 3rd part API returns at least one news in response)
+     */
     @Test
     void test01schedule() {
         final NewsApiResponse response = this.controller.getNews();

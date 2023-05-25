@@ -14,6 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This unit tests examines the correctness of NewsApiController's methods
+ */
+
 @SpringBootTest(classes = { Application.class })
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class NewsApiControllerTest {
@@ -24,6 +28,9 @@ public class NewsApiControllerTest {
         this.controller = controller;
     }
 
+    /**
+     * Test if response from 'newsapi.org' can be fetched successfully and then mapped to the list of domain objects
+     */
     @Test
     void test01getNews() {
         final NewsApiResponse newsResponse = this.controller.getNews();
