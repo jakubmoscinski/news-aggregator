@@ -17,6 +17,10 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This unit tests examines the correctness of NewsApiProcessor's methods
+ */
+
 @SpringBootTest(classes = { Application.class })
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class NewsApiProcessorTest {
@@ -27,6 +31,9 @@ public class NewsApiProcessorTest {
         this.processor = processor;
     }
 
+    /**
+     * Test if object representation of JSON response from 'newsapi.org' can be successfully mapped to an object of Article class
+     */
     @Test
     void test01apply() {
         final NewsApiSource source = new NewsApiSource();

@@ -14,6 +14,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This unit tests examines the correctness of ArticleService's methods
+ */
+
 @SpringBootTest(classes = { Application.class })
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ArticleServiceTest {
@@ -25,8 +29,11 @@ public class ArticleServiceTest {
         this.service = service;
     }
 
+    /**
+     * Test if Article can be saved keeping all its fields
+     */
     @Test
-    void test01SaveMember() {
+    void test01SaveArticle() {
         this.service.dropTableContent();
 
         final Article article = new Article();
@@ -47,6 +54,9 @@ public class ArticleServiceTest {
         assert article.getPublicationDay().equals(savedArticle.getPublicationDay());
     }
 
+    /**
+     * Test if list of articles can be fetched successfully
+     */
     @Test
     void test02FindArticles() {
         final List<Article> articles = this.service.findArticles();
@@ -54,6 +64,9 @@ public class ArticleServiceTest {
         assert articles.size() > 0;
     }
 
+    /**
+     * Test if an article of a given id can be fetched successfully
+     */
     @Test
     void test03FindArticleById() {
         final List<Article> articles = this.service.findArticles();
