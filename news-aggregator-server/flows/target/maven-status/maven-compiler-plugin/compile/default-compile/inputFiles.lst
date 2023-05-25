@@ -1,6 +1,4 @@
 /home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/flows/src/main/java/news/aggregator/flows/model/Member.java
-/home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/flows/src/main/java/news/aggregator/flows/model/support/ArticleSource.java
-/home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/flows/src/main/java/news/aggregator/flows/model/UserAuthentication.java
 /home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/flows/src/main/java/news/aggregator/flows/repository/ArticleRepository.java
 /home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/flows/src/main/java/news/aggregator/flows/model/Article.java
 /home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/flows/src/main/java/news/aggregator/flows/repository/MemberRepository.java

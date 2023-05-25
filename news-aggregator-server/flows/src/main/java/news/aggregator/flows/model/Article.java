@@ -2,11 +2,13 @@ package news.aggregator.flows.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
-import news.aggregator.flows.model.support.ArticleSource;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
+
+/**
+ * Representation of 'article' table and its columns
+ */
 
 @Entity
 @Table(name = "article")
@@ -16,8 +18,7 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @NotNull
-    @Column(name = "author"/*, nullable = false*/)
+    @Column(name = "author")
     private String author;
 
     @NotNull
@@ -38,7 +39,7 @@ public class Article {
     @Column(name = "publication_day", nullable = false)
     private LocalDate publicationDay;
 
-    @ManyToOne(/*fetch = FetchType.EAGER*/)
+    @ManyToOne()
     private Member member;
 
     public Long getId() {
@@ -98,18 +99,3 @@ public class Article {
     }
 
 }
-
-
-
-
-//    @NotNull
-//    @Column(name="source", nullable = false)
-//    @Enumerated(EnumType.STRING)
-//    private ArticleSource source;
-//
-//    @Lob
-//    @Column(name = "content")
-//    @JsonFormat(shape = JsonFormat.Shape.STRING)
-//    private String content;
-
-//TODO relation to members - likes/favorites etc

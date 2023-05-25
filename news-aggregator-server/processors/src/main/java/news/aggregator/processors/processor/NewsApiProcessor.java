@@ -8,9 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * Maps object representation of the response chain from 'newsapi.org' into list of Articles
+ */
+
 @Component
 public class NewsApiProcessor implements Function<NewsApiResponse, List<Article>> {
 
+    /**
+     * @param domain representation of 'newsapi.org' response sequence wrapped in single object
+     * @return list of elements consistent with 'article' table format
+     */
     @Override
     public List<Article> apply(final NewsApiResponse domain) {
         final List<Article> articles = new ArrayList();

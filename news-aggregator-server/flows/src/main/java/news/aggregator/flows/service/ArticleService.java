@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Wrapper for ArticleRepository - provides additional business logic. Persistence layer access point
+ */
+
 @Service
 @Qualifier("memberService")
 public class ArticleService {
@@ -25,12 +29,18 @@ public class ArticleService {
         return this.repository.save(article);
     }
 
+    /**
+     * @return only first 25 news
+     */
     public List<Article> findArticles() {
         return this.repository.findArticles(PageRequest.of(0,25));
     }
 
     public Optional<Article> findArticleById(final long id) { return this.repository.findArticleById(id); }
 
+    /**
+     * test purposes only
+     */
     public void dropTableContent() {
         this.repository.deleteAll();
     }

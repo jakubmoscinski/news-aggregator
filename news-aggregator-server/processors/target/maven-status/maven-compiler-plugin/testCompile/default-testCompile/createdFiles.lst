@@ -1,1 +1,5 @@
-news/aggregator/processors/test/MemberTest.class
+news/aggregator/processors/test/ArticleServiceTest.class
+news/aggregator/processors/test/NewsApiProcessorTest.class
+news/aggregator/processors/test/NewsApiControllerTest.class
+news/aggregator/processors/test/MemberServiceTest.class
+news/aggregator/processors/test/NewsApiSchedulerTest.class

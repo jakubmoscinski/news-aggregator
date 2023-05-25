@@ -1,2 +1,5 @@
-/home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/processors/src/test/java/news/aggregator/processors/test/MemberTest.java
-/home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/processors/src/test/java/news/aggregator/processors/test/ArticleTest.java
+/home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/processors/src/test/java/news/aggregator/processors/test/NewsApiSchedulerTest.java
+/home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/processors/src/test/java/news/aggregator/processors/test/NewsApiProcessorTest.java
+/home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/processors/src/test/java/news/aggregator/processors/test/MemberServiceTest.java
+/home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/processors/src/test/java/news/aggregator/processors/test/NewsApiControllerTest.java
+/home/jmoscinski/Desktop/news-aggregator/news-aggregator-server/processors/src/test/java/news/aggregator/processors/test/ArticleServiceTest.java

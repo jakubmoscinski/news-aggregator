@@ -18,7 +18,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EntityScan(basePackageClasses = Member.class)
 @PropertySource({ "classpath:application.properties" })
 @SpringBootApplication(scanBasePackageClasses = { ArticleService.class, Member.class, NewsApiScheduler.class, NewsApiController.class, NewsApiProcessor.class })
-public class Application {  //todo use packages instead
+public class Application {
 
     public static void main(final String[] args) {
         SpringApplication.run(Application.class, args);

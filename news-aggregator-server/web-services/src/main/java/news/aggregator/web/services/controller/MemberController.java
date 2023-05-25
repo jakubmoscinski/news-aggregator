@@ -7,8 +7,6 @@ import news.aggregator.flows.model.Article;
 import news.aggregator.flows.model.Member;
 import news.aggregator.flows.service.ArticleService;
 import news.aggregator.flows.service.MemberService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -20,6 +18,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+/**
+ * Detailed documentation and test methods: http://localhost:8080/news-aggregator/swagger-ui/index.html
+ */
 
 @RestController
 @RequestMapping("/member")

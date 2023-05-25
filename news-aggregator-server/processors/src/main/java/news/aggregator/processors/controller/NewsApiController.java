@@ -8,6 +8,10 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+/**
+ * Web controller - fetches news from 'newsapi.org' - 3rd party API
+ */
+
 @Component
 @Qualifier("newsApiController")
 public class NewsApiController extends WebController {
@@ -26,9 +30,13 @@ public class NewsApiController extends WebController {
         this.country = country;
     }
 
+    /**
+     * Calls 'newsapi.org' with web request - using country and apiKey parameters
+     * @return Domain object consistent with 'newsapi.org' JSON response
+     */
     public NewsApiResponse getNews() {
         final Mono<NewsApiResponse> mono = client.get().uri(builder -> builder.path(this.requestPart)
-                .queryParam("country", this.country)    //TODO countries to enum
+                .queryParam("country", this.country)
                 .queryParam("apiKey", this.token)
                 .build()
         )
