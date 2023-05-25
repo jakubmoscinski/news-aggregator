@@ -8,6 +8,8 @@ class ContentView extends StatelessWidget {
 
   const ContentView({super.key, required this.user, required this.url});
 
+  ///Provides layout of [ContentView] widgets
+  ///Interacts with [Route] - (Routing)
   @override
   Widget build(BuildContext context) {
     return Scaffold(

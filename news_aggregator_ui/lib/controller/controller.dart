@@ -9,6 +9,8 @@ class Controller {
   const Controller({required baseUrl})
       : _baseUrl = baseUrl;
 
+  ///Allows to perform asynchronous web requests: ([_baseUrl] + [urlPart])
+  ///Catches all [e] exceptions - (exceptions of any type) that may appear during the call
   Future<ClientResponse> getData({required String urlPart, required int timeout}) async {
     try {
       return processResponse(await get(Uri.parse(_baseUrl + urlPart)).timeout(Duration(seconds: timeout)));
@@ -17,6 +19,9 @@ class Controller {
     }
   }
 
+  ///Processes given response [response] - converts given JSON body to [ClientResponse]
+  ///Handles HTTP Status Code Errors: [statusCode]
+  ///Catches all [e] exceptions - (exceptions of any type) that may appear during the call
   Future<ClientResponse> processResponse(final Response response) async {
     final statusCode = response.statusCode;
 
@@ -35,6 +40,7 @@ class Controller {
     }
   }
 
+  ///return [ClientResponse] wrapper whenever an error occurs
   ClientResponse provideErrorResponse(Object e) {
     return ClientResponse(
         response: [],

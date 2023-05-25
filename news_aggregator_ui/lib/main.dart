@@ -10,6 +10,8 @@ class Application extends StatelessWidget {
 
   Application({Key? key}) : super(key: key);
 
+  ///Provides common styling
+  ///Defines start route
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

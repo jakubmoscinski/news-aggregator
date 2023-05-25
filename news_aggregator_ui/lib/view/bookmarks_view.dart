@@ -11,6 +11,9 @@ class BookmarksView extends StatelessWidget {
 
   const BookmarksView({super.key, required this.user});
 
+  ///Provides layout of [BookmarksView] widgets
+  ///Provides integration with [Provider] and [BookmarkService] - handles asynchronous content updates
+  ///Interacts with [Route] - (Routing)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +58,8 @@ class BookmarksView extends StatelessWidget {
     );
   }
 
+  ///Wraps list of [ArticleModel] into a widgets user can interact with
   List<Widget> _formatArticles(List<ArticleModel> articles, BuildContext context) {
-    //todo further formatting
     List<Padding> paddings = [];
 
     for (ArticleModel article in articles) {

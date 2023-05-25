@@ -7,6 +7,8 @@ class RegistrationService with ChangeNotifier {
 
   RegistrationService() : _controller = const Controller(baseUrl: 'http://10.0.2.2:8080/news-aggregator/member');
 
+  ///Performs asynchronous calls to News Aggregator API
+  ///- creates new user of given [firstName], [lastName], [username], [password]
   Future<void> createUser(String firstName, String lastName, String username, String password) async {
     await _controller.getData(urlPart: '/new-user/$firstName/$lastName/$username/$password', timeout: _timeout);
   }

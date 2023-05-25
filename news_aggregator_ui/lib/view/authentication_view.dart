@@ -6,6 +6,9 @@ import 'package:provider/provider.dart';
 class AuthenticationView extends StatelessWidget {
   const AuthenticationView({super.key});
 
+  ///Provides layout of [BookmarksView] widgets
+  ///Provides integration with [Provider] and [AuthenticationService] - handles asynchronous content updates
+  ///Interacts with [Route] - (Routing)
   @override
   Widget build(BuildContext context) {
     final userNameController = TextEditingController();
@@ -21,8 +24,6 @@ class AuthenticationView extends StatelessWidget {
             create: (_) => AuthenticationService(),
             builder: (context, child) {
               return Consumer<AuthenticationService>(builder: (context, value, child) {
-                // context.read<AuthenticationService>().fetchData();
-
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -69,6 +70,9 @@ class AuthenticationView extends StatelessWidget {
     );
   }
 
+  ///Returns styled [TextField]
+  ///[label] - placeholder text
+  ///[obscure] - is text obscured
   Widget _provideTextField(String label, TextEditingController controller, bool obscure) {
     return Padding(
       padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
@@ -80,6 +84,7 @@ class AuthenticationView extends StatelessWidget {
     );
   }
 
+  ///For a given [context] return pop-up message [Widget]
   Widget _buildWarningPopupDialog(BuildContext context) {
     return AlertDialog(
       title: const Text(
