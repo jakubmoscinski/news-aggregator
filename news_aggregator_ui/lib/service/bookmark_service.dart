@@ -10,6 +10,9 @@ class BookmarkService with ChangeNotifier {
 
   BookmarkService() : _controller = const Controller(baseUrl: 'http://10.0.2.2:8080/news-aggregator/member');
 
+  ///Performs asynchronous calls to News Aggregator API
+  ///Allows to access all bookmarked articles of a user of [username]
+  ///Notifies listeners - [_articles] updates
   Future<void> fetchData(String username) async {
     final clientResponse = await _controller.getData(urlPart: '/bookmarks/$username', timeout: _timeout);
 
@@ -26,7 +29,6 @@ class BookmarkService with ChangeNotifier {
           source: response['source'],
           title: response['title'],
           url: response['url'],
-          // day: model['publishedAt'],
         );
 
         articles.add(_article);

@@ -7,6 +7,10 @@ import 'package:news_aggregator_ui/view/registration_view.dart';
 
 class RoutesGenerator {
 
+  ///Provides routing between [AuthenticationView], [BookmarksView], [ContentView], [NewsView], [RegistrationView]
+  ///Allows to pass [username] (and other parameters - if needed) between these views
+  ///[AuthenticationView] and [RegistrationView] don't take any parameters
+  ///[AuthenticationView] passes [username] as a parameter
   Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
 
@@ -48,6 +52,7 @@ class RoutesGenerator {
     }
   }
 
+  /// Provides error route
   static Route<dynamic> _errorRoute() {
     return MaterialPageRoute(builder: (_) {
       return Scaffold(

@@ -10,6 +10,9 @@ class ArticleService with ChangeNotifier {
 
   ArticleService() : _controller = const Controller(baseUrl: 'http://10.0.2.2:8080/news-aggregator/article');
 
+  ///Performs asynchronous calls to News Aggregator API
+  ///Allows to access [Article] List
+  ///Notifies listeners - list of [ArticleModel] updates
   Future<void> fetchData() async {
     final clientResponse = await _controller.getData(urlPart: '/list', timeout: _timeout);
 

@@ -9,16 +9,19 @@ class FavoriteNewsService with ChangeNotifier {
 
   FavoriteNewsService() : _controller = const Controller(baseUrl: 'http://10.0.2.2:8080/news-aggregator/member');
 
+  ///Performs asynchronous calls to News Aggregator API
+  ///Updates user of [username] by assigning article of [articleId] as a favorite/bookmarked one
   Future<void> addToFavorites(String username, int articleId) async {
     final clientResponse = await _controller.getData(urlPart: '/add-favorite/$username/$articleId', timeout: _timeout);
 
     if (!clientResponse.isSuccess) {
       debugPrint(clientResponse.errorMessage);
     }
-
-    // notifyListeners();
   }
 
+  ///Performs asynchronous calls to News Aggregator API
+  ///Updates [isFavorite] flag and notifies listeners about it
+  ///Checks if user of a given [username] bookmarked article of [articleId]
   Future<void> checkIfFavorite(String username, int articleId) async {
     final clientResponse = await _controller.getData(urlPart: '/is-favorite/$username/$articleId', timeout: _timeout);
 

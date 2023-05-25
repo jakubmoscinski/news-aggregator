@@ -12,6 +12,9 @@ class NewsView extends StatelessWidget {
 
   const NewsView({super.key, required this.user});
 
+  ///Provides layout of [NewsView] widgets
+  ///Provides integration with [Provider] and [ArticleService] - handles asynchronous content updates
+  ///Interacts with [Route] - (Routing)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +59,8 @@ class NewsView extends StatelessWidget {
     );
   }
 
+  ///Wraps list of [ArticleModel] into a widgets user can interact with
   List<Widget> _formatArticles(List<ArticleModel> articles, String user, BuildContext context) {
-    //todo further formatting
     List<Padding> paddings = [];
 
     for (ArticleModel article in articles) {

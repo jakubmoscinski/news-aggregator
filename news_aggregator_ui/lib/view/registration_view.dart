@@ -6,6 +6,9 @@ import 'package:provider/provider.dart';
 class RegistrationView extends StatelessWidget {
   const RegistrationView({super.key});
 
+  ///Provides layout of [RegistrationView] widgets
+  ///Provides integration with [Provider] and [RegistrationService] - handles asynchronous content updates
+  ///Interacts with [Route] - (Routing)
   @override
   Widget build(BuildContext context) {
     final service = RegistrationService();
@@ -63,6 +66,9 @@ class RegistrationView extends StatelessWidget {
     );
   }
 
+  ///Returns styled [TextField]
+  ///[label] - placeholder text
+  ///[obscure] - is text obscured
   Widget _provideTextField(String label, TextEditingController controller, bool obscure) {
     return Padding(
       padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
@@ -74,6 +80,7 @@ class RegistrationView extends StatelessWidget {
     );
   }
 
+  ///For a given [context] return pop-up message [Widget]
   Widget _buildWarningPopupDialog(BuildContext context) {
     return AlertDialog(
       title: const Text(

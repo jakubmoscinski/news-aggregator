@@ -1,10 +1,10 @@
+///Article Domain class
 class ArticleModel {
   final int id;
   final String author;
   final String source;
   final String title;
   final String url;
-  // final DateTime day;
 
   ArticleModel({
     required this.id,
@@ -12,6 +12,5 @@ class ArticleModel {
     required this.source,
     required this.title,
     required this.url,
-    // required this.day,
   });
 }

@@ -1,3 +1,7 @@
+///Wrapper for:
+/// [response] - actual content
+/// [isSuccess] - Success flag
+/// [errorMessage] - Error/failure description
 class ClientResponse {
   final dynamic _response;
   final bool _isSuccess;
